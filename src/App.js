@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
 import './App.css';
 
-function Square({ value, onClick }) {
+function Square({ value, onClick, isWinningSquare }) {
   return (
-    <button className="square" onClick={onClick}>
+    <button
+      className={`square ${isWinningSquare ? 'winning-square' : ''}`}
+      onClick={onClick}
+    >
       {value}
     </button>
   );
 }
 
-function Board({ squares, onClick }) {
+function Board({ squares, onClick, winningSquares }) {
   return (
     <div>
       {[0, 3, 6].map((startIndex) => (
         <div className="board-row" key={startIndex}>
           {squares.slice(startIndex, startIndex + 3).map((square, index) => (
-            <Square key={index + startIndex} value={square} onClick={() => onClick(index + startIndex)} />
+            <Square
+              key={index + startIndex}
+              value={square}
+              onClick={() => onClick(index + startIndex)}
+              isWinningSquare={winningSquares.includes(index + startIndex)}
+            />
           ))}
         </div>
       ))}
@@ -37,10 +45,10 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return { winner: squares[a], winningSquares: lines[i] };
     }
   }
-  return null;
+  return { winner: null, winningSquares: [] };
 }
 
 function App() {
@@ -52,7 +60,7 @@ function App() {
   const [namesSet, setNamesSet] = useState(false);
 
   const current = history[stepNumber];
-  const winner = calculateWinner(current.squares);
+  const { winner, winningSquares } = calculateWinner(current.squares);
 
   const handleClick = (index) => {
     const newHistory = history.slice(0, stepNumber + 1);
@@ -66,11 +74,11 @@ function App() {
     setStepNumber(newHistory.length);
     setXIsNext(!xIsNext);
 
-    const winnerAfterMove = calculateWinner(squares);
-    if (winnerAfterMove) {
+    const { winner: newWinner } = calculateWinner(squares);
+    if (newWinner) {
       setScore((prevScore) => ({
         ...prevScore,
-        [winnerAfterMove]: prevScore[winnerAfterMove] + 1,
+        [newWinner]: prevScore[newWinner] + 1,
       }));
     }
   };
@@ -124,7 +132,7 @@ function App() {
       ) : (
         <>
           <div className="game-board">
-            <Board squares={current.squares} onClick={handleClick} />
+            <Board squares={current.squares} onClick={handleClick} winningSquares={winningSquares} />
           </div>
           <div className="game-info">
             <div>

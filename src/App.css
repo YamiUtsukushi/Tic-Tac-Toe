@@ -109,3 +109,9 @@ button:disabled {
   font-size: 16px;
   color: #ccc;
 }
+
+.winning-square {
+  background-color: #28a745; /* Couleur de fond pour les cases gagnantes */
+  color: white; /* Changer la couleur du texte */
+  border-color: #28a745; /* Changer la couleur de la bordure */
+}
