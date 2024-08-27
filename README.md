@@ -60,9 +60,13 @@ Voici un aperçu des fonctionnalités disponibles dans ce jeu de Tic Tac Toe :
 
 4. **Annulation du dernier coup** : Les joueurs ont la possibilité d'annuler leur dernier coup, à moins qu'un gagnant ait déjà été déterminé.
 
-5. **Réinitialisation de la partie** : Un bouton permet de réinitialiser la partie à tout moment, ce qui remet à zéro le plateau de jeu et l'état du joueur.
+5. **Animation de Confettis** : Lorsqu'un joueur gagne, une animation de confettis est déclenchée pour célébrer la victoire.
 
-6. **Gestion des scores** : Le jeu suit et affiche le nombre de parties gagnées par chaque joueur.
+6. **Overlay de Victoire** : Un message s'affiche au centre de la grille pour indiquer le nom du gagnant, créant un effet visuel attrayant.
+
+7. **Bouton 'Relancer une nouvelle partie'** : Après une victoire, un bouton remplace les autres options pour permettre aux joueurs de relancer facilement une nouvelle partie.
+
+8. **Gestion des scores** : Le jeu suit et affiche le nombre de parties gagnées par chaque joueur.
 
 ## Structure du projet
 
