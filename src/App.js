@@ -48,6 +48,8 @@ function App() {
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXIsNext] = useState(true);
   const [score, setScore] = useState({ X: 0, O: 0 });
+  const [playerNames, setPlayerNames] = useState({ player1: '', player2: '' });
+  const [namesSet, setNamesSet] = useState(false);
 
   const current = history[stepNumber];
   const winner = calculateWinner(current.squares);
@@ -75,7 +77,6 @@ function App() {
 
   const undoLastMove = () => {
     if (stepNumber > 0 && !winner) {
-      // Ne permet d'annuler que si la partie n'est pas terminée
       setStepNumber(stepNumber - 1);
       setXIsNext(stepNumber % 2 === 0);
     }
@@ -87,21 +88,60 @@ function App() {
     setXIsNext(true);
   };
 
+  const handleNameSubmit = (event) => {
+    event.preventDefault();
+    if (playerNames.player1 && playerNames.player2) {
+      setNamesSet(true);
+    }
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setPlayerNames((prevNames) => ({
+      ...prevNames,
+      [name]: value,
+    }));
+  };
+
   return (
     <div className="game">
-      <div className="game-board">
-        <Board squares={current.squares} onClick={handleClick} />
-      </div>
-      <div className="game-info">
-        <div>{winner ? `Gagnant : ${winner}` : `Prochain joueur : ${xIsNext ? 'X' : 'O'}`}</div>
-        <button onClick={undoLastMove} disabled={winner}>Annuler le dernier coup</button>
-        <button onClick={resetGame}>Réinitialiser la partie</button>
-      </div>
-      <div className="scoreboard">
-        <h3>Score</h3>
-        <p>Joueur X: {score.X}</p>
-        <p>Joueur O: {score.O}</p>
-      </div>
+      {!namesSet ? (
+        <form onSubmit={handleNameSubmit} className="name-form">
+          <div>
+            <label>
+              Nom du Joueur 1:
+              <input type="text" name="player1" value={playerNames.player1} onChange={handleInputChange} />
+            </label>
+          </div>
+          <div>
+            <label>
+              Nom du Joueur 2:
+              <input type="text" name="player2" value={playerNames.player2} onChange={handleInputChange} />
+            </label>
+          </div>
+          <button type="submit">Commencer le jeu</button>
+        </form>
+      ) : (
+        <>
+          <div className="game-board">
+            <Board squares={current.squares} onClick={handleClick} />
+          </div>
+          <div className="game-info">
+            <div>
+              {winner
+                ? `Gagnant : ${winner === 'X' ? playerNames.player1 : playerNames.player2}`
+                : `Prochain joueur : ${xIsNext ? playerNames.player1 : playerNames.player2}`}
+            </div>
+            <button onClick={undoLastMove} disabled={winner}>Annuler le dernier coup</button>
+            <button onClick={resetGame}>Réinitialiser la partie</button>
+          </div>
+          <div className="scoreboard">
+            <h3>Score</h3>
+            <p>{playerNames.player1} (X): {score.X}</p>
+            <p>{playerNames.player2} (O): {score.O}</p>
+          </div>
+        </>
+      )}
     </div>
   );
 }

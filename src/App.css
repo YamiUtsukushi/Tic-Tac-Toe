@@ -26,3 +26,25 @@
 .status {
   margin-bottom: 10px;
 }
+
+.name-form {
+  margin-bottom: 20px;
+}
+
+.name-form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.name-form input {
+  margin-left: 10px;
+}
+
+.scoreboard {
+  margin-top: 20px;
+}
+
+button {
+  margin-top: 10px;
+  margin-right: 5px;
+}
