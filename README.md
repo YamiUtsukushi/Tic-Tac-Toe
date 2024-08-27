@@ -9,8 +9,7 @@ Voici un aperçu de l'interface utilisateur du jeu Tic Tac Toe :
 
 | Avant la victoire                               | Après la victoire                              |
 |-------------------------------------------------|------------------------------------------------|
-| ![Aperçu du jeu Tic Tac Toe](tic_tac_toe_screenshot.png) | ![Aperçu du jeu Tic Tac Toe après victoire](tic_tac_toe_win_screenshot.png) |
-
+| <img src="tic_tac_toe_screenshot.png" alt="Aperçu du jeu Tic Tac Toe" width="300"/> | <img src="tic_tac_toe_win_screenshot.png" alt="Aperçu du jeu Tic Tac Toe après victoire" width="300"/> |
 
 ## Prérequis
 
