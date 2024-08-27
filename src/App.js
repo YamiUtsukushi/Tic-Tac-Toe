@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Confetti from 'react-confetti'; // Importation de la bibliothèque Confetti
+import Confetti from 'react-confetti'; 
 
 function Square({ value, onClick, isWinningSquare }) {
   return (
@@ -63,7 +63,7 @@ function App() {
   const [showOverlay, setShowOverlay] = useState(false);
   const [winnerName, setWinnerName] = useState('');
   const [confettiActive, setConfettiActive] = useState(false);
-  const [recycleConfetti, setRecycleConfetti] = useState(true); // Contrôle du recyclage des confettis
+  const [recycleConfetti, setRecycleConfetti] = useState(true); 
 
   const current = history[stepNumber];
   const { winner, winningSquares } = calculateWinner(current.squares);
@@ -80,7 +80,6 @@ function App() {
         setRecycleConfetti(false); // Arrêter progressivement le recyclage après 4 secondes
       }, 4000);
 
-      // Supprimer le timer qui désactivait l'overlay et les confettis après 5 secondes
       return () => {
         clearTimeout(stopConfettiTimer);
       };
@@ -123,7 +122,7 @@ function App() {
     setShowOverlay(false);
     setWinnerName('');
     setConfettiActive(false);
-    setRecycleConfetti(true); // Réinitialiser l'état des confettis
+    setRecycleConfetti(true);
   };
 
   const handleNameSubmit = (event) => {
