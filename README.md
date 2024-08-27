@@ -7,7 +7,10 @@ Ce projet est un jeu de Tic Tac Toe interactif développé avec React. Il permet
 
 Voici un aperçu de l'interface utilisateur du jeu Tic Tac Toe :
 
-![Aperçu du jeu Tic Tac Toe](tic_tac_toe_screenshot.png) (tic_tac_toe_win_screenshot.png)
+| Avant la victoire                               | Après la victoire                              |
+|-------------------------------------------------|------------------------------------------------|
+| ![Aperçu du jeu Tic Tac Toe](tic_tac_toe_screenshot.png) | ![Aperçu du jeu Tic Tac Toe après victoire](tic_tac_toe_win_screenshot.png) |
+
 
 ## Prérequis
 
