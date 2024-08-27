@@ -7,10 +7,9 @@ Ce projet est un jeu de Tic Tac Toe interactif développé avec React. Il permet
 
 Voici un aperçu de l'interface utilisateur du jeu Tic Tac Toe :
 
-| Écran de démarrage                              | Avant la victoire                               | Après la victoire                              |
-|-------------------------------------------------|-------------------------------------------------|------------------------------------------------|
-| <img src="tic_tac_toe_start_screenshot.png" alt="Écran de démarrage" width="300"/> | <img src="tic_tac_toe_screenshot.png" alt="Aperçu du jeu Tic Tac Toe" width="300"/> | <img src="tic_tac_toe_win_screenshot.png" alt="Aperçu du jeu Tic Tac Toe après victoire" width="300"/> |
-
+| Écran de démarrage                              | Avant la victoire                               | Après la victoire                              | Match nul                               |
+|-------------------------------------------------|-------------------------------------------------|------------------------------------------------|------------------------------------------|
+| <img src="tic_tac_toe_start_screenshot.png" alt="Écran de démarrage" width="250"/> | <img src="tic_tac_toe_screenshot.png" alt="Aperçu du jeu Tic Tac Toe" width="250"/> | <img src="tic_tac_toe_win_screenshot.png" alt="Aperçu du jeu Tic Tac Toe après victoire" width="250"/> | <img src="tic_tac_toe_draw_screenshot.png" alt="Aperçu du jeu Tic Tac Toe après un match nul" width="250"/> |
 
 ## Prérequis
 
@@ -67,15 +66,17 @@ Voici un aperçu des fonctionnalités disponibles dans ce jeu de Tic Tac Toe :
 
 3. **Détection de la victoire** : Le jeu détecte automatiquement le gagnant lorsque trois symboles identiques sont alignés horizontalement, verticalement ou en diagonale.
 
-4. **Annulation du dernier coup** : Les joueurs ont la possibilité d'annuler leur dernier coup, à moins qu'un gagnant ait déjà été déterminé.
+4. **Détection du match nul** : Si toutes les cases sont remplies sans qu'un joueur ait gagné, un message "Match nul" est affiché, et les joueurs peuvent relancer une nouvelle partie.
 
-5. **Animation de Confettis** : Lorsqu'un joueur gagne, une animation de confettis est déclenchée pour célébrer la victoire.
+5. **Annulation du dernier coup** : Les joueurs ont la possibilité d'annuler leur dernier coup, à moins qu'un gagnant ait déjà été déterminé.
 
-6. **Overlay de Victoire** : Un message s'affiche au centre de la grille pour indiquer le nom du gagnant, créant un effet visuel attrayant.
+6. **Animation de Confettis** : Lorsqu'un joueur gagne, une animation de confettis est déclenchée pour célébrer la victoire.
 
-7. **Bouton 'Relancer une nouvelle partie'** : Après une victoire, un bouton remplace les autres options pour permettre aux joueurs de relancer facilement une nouvelle partie.
+7. **Overlay de Victoire** : Un message s'affiche au centre de la grille pour indiquer le nom du gagnant, créant un effet visuel attrayant.
 
-8. **Gestion des scores** : Le jeu suit et affiche le nombre de parties gagnées par chaque joueur.
+8. **Bouton 'Relancer une nouvelle partie'** : Après une victoire ou un match nul, un bouton remplace les autres options pour permettre aux joueurs de relancer facilement une nouvelle partie.
+
+9. **Gestion des scores** : Le jeu suit et affiche le nombre de parties gagnées par chaque joueur.
 
 ## Structure du projet
 
