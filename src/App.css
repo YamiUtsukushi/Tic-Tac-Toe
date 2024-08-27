@@ -1,50 +1,111 @@
-.game {
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #282c34;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   height: 100vh;
-  font-family: 'Arial', sans-serif;
+}
+
+.game {
+  background-color: #3b3f47;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
 }
 
 .board-row {
   display: flex;
+  justify-content: center;
+  margin-bottom: 5px; /* Ajout d'un espace entre les lignes */
 }
 
 .square {
-  width: 100px;
-  height: 100px;
-  background: #fff;
-  border: 1px solid #999;
+  width: 80px;
+  height: 80px;
+  background: #444;
+  border: 2px solid #61dafb;
   font-size: 24px;
   font-weight: bold;
+  color: #61dafb;
   cursor: pointer;
-  text-align: center;
-  line-height: 100px;
+  transition: background-color 0.3s, transform 0.2s;
+  border-radius: 5px;
+  margin: 5px; /* Espace autour de chaque carré pour éviter qu'ils se collent */
+}
+
+.square:hover {
+  background-color: #61dafb;
+  color: #282c34;
+  transform: scale(1.05);
 }
 
 .status {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #61dafb;
 }
 
 .name-form {
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .name-form label {
   display: block;
   margin-bottom: 10px;
+  font-size: 16px;
 }
 
 .name-form input {
-  margin-left: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  width: calc(100% - 24px);
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #61dafb;
+  color: #282c34;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #4dabf7;
+  transform: scale(1.05);
+}
+
+button:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
 }
 
 .scoreboard {
   margin-top: 20px;
 }
 
-button {
-  margin-top: 10px;
-  margin-right: 5px;
+.scoreboard h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #61dafb;
+}
+
+.scoreboard p {
+  font-size: 16px;
+  color: #ccc;
 }
