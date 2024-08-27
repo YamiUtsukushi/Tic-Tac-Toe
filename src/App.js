@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import Confetti from 'react-confetti'; // Importation de la bibliothèque Confetti
 
 function Square({ value, onClick, isWinningSquare }) {
   return (
@@ -14,7 +15,7 @@ function Square({ value, onClick, isWinningSquare }) {
 
 function Board({ squares, onClick, winningSquares }) {
   return (
-    <div>
+    <div className="board-container">
       {[0, 3, 6].map((startIndex) => (
         <div className="board-row" key={startIndex}>
           {squares.slice(startIndex, startIndex + 3).map((square, index) => (
@@ -58,9 +59,33 @@ function App() {
   const [score, setScore] = useState({ X: 0, O: 0 });
   const [playerNames, setPlayerNames] = useState({ player1: '', player2: '' });
   const [namesSet, setNamesSet] = useState(false);
+  const [buttonText, setButtonText] = useState('Réinitialiser la partie');
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [winnerName, setWinnerName] = useState('');
+  const [confettiActive, setConfettiActive] = useState(false);
+  const [recycleConfetti, setRecycleConfetti] = useState(true); // Contrôle du recyclage des confettis
 
   const current = history[stepNumber];
   const { winner, winningSquares } = calculateWinner(current.squares);
+
+  useEffect(() => {
+    if (winner) {
+      setButtonText('Relancer une nouvelle partie'); // Modifier le texte du bouton immédiatement
+      setShowOverlay(true);
+      setWinnerName(winner === 'X' ? playerNames.player1 : playerNames.player2);
+      setConfettiActive(true);
+      setRecycleConfetti(true); // Démarrer avec le recyclage des confettis
+
+      const stopConfettiTimer = setTimeout(() => {
+        setRecycleConfetti(false); // Arrêter progressivement le recyclage après 4 secondes
+      }, 4000);
+
+      // Supprimer le timer qui désactivait l'overlay et les confettis après 5 secondes
+      return () => {
+        clearTimeout(stopConfettiTimer);
+      };
+    }
+  }, [winner, playerNames]);
 
   const handleClick = (index) => {
     const newHistory = history.slice(0, stepNumber + 1);
@@ -94,6 +119,11 @@ function App() {
     setHistory([{ squares: Array(9).fill(null) }]);
     setStepNumber(0);
     setXIsNext(true);
+    setButtonText('Réinitialiser la partie');
+    setShowOverlay(false);
+    setWinnerName('');
+    setConfettiActive(false);
+    setRecycleConfetti(true); // Réinitialiser l'état des confettis
   };
 
   const handleNameSubmit = (event) => {
@@ -133,15 +163,35 @@ function App() {
         <>
           <div className="game-board">
             <Board squares={current.squares} onClick={handleClick} winningSquares={winningSquares} />
+            {showOverlay && (
+              <div className="reset-overlay">
+                Gagnant : {winnerName}
+              </div>
+            )}
           </div>
+          {confettiActive && (
+            <Confetti
+              width={window.innerWidth}
+              height={window.innerHeight}
+              recycle={recycleConfetti} // Permet d'arrêter le recyclage progressivement
+            />
+          )}
           <div className="game-info">
-            <div>
-              {winner
-                ? `Gagnant : ${winner === 'X' ? playerNames.player1 : playerNames.player2}`
-                : `Prochain joueur : ${xIsNext ? playerNames.player1 : playerNames.player2}`}
-            </div>
-            <button onClick={undoLastMove} disabled={winner}>Annuler le dernier coup</button>
-            <button onClick={resetGame}>Réinitialiser la partie</button>
+            {showOverlay ? (
+              <button onClick={resetGame} className="reset-button-overlay">
+                {buttonText}
+              </button>
+            ) : (
+              <>
+                <div>
+                  {winner
+                    ? `Gagnant : ${winner === 'X' ? playerNames.player1 : playerNames.player2}`
+                    : `Prochain joueur : ${xIsNext ? playerNames.player1 : playerNames.player2}`}
+                </div>
+                <button onClick={undoLastMove} disabled={winner}>Annuler le dernier coup</button>
+                <button onClick={resetGame}>{buttonText}</button>
+              </>
+            )}
           </div>
           <div className="scoreboard">
             <h3>Score</h3>

@@ -75,7 +75,7 @@ body {
 button {
   padding: 10px 20px;
   margin-top: 10px;
-  margin-right: 5px;
+  margin-right: 10px;
   border: none;
   border-radius: 5px;
   background-color: #61dafb;
@@ -114,4 +114,56 @@ button:disabled {
   background-color: #28a745; /* Couleur de fond pour les cases gagnantes */
   color: white; /* Changer la couleur du texte */
   border-color: #28a745; /* Changer la couleur de la bordure */
+}
+
+.reset-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 18px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 1;
+}
+
+
+.board-container {
+  position: relative;
+}
+
+.reset-overlay {
+  position: absolute;
+  top: 40%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 18px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  z-index: 1;
+}
+
+
+.reset-button-overlay {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #61dafb;
+  color: #282c34;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.reset-button-overlay:hover {
+  background-color: #4dabf7;
 }
