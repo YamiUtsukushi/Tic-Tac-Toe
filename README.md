@@ -3,6 +3,12 @@
 
 Ce projet est un jeu de Tic Tac Toe interactif développé avec React. Il permet à deux joueurs de s'affronter sur un plateau de jeu 3x3. Le projet inclut plusieurs fonctionnalités avancées pour améliorer l'expérience utilisateur, telles que la saisie des pseudonymes des joueurs, l'annulation du dernier coup, et la gestion des scores.
 
+## Aperçu de l'application
+
+Voici un aperçu de l'interface utilisateur du jeu Tic Tac Toe :
+
+![Aperçu du jeu Tic Tac Toe](tic_tac_toe_screenshot.png)
+
 ## Prérequis
 
 Avant de pouvoir lancer ce projet, assurez-vous d'avoir les éléments suivants installés sur votre machine :
