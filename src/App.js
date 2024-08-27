@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Confetti from 'react-confetti'; 
+import Confetti from 'react-confetti'; // Importation de la bibliothèque Confetti
 
 function Square({ value, onClick, isWinningSquare }) {
   return (
@@ -63,7 +63,8 @@ function App() {
   const [showOverlay, setShowOverlay] = useState(false);
   const [winnerName, setWinnerName] = useState('');
   const [confettiActive, setConfettiActive] = useState(false);
-  const [recycleConfetti, setRecycleConfetti] = useState(true); 
+  const [recycleConfetti, setRecycleConfetti] = useState(true); // Contrôle du recyclage des confettis
+  const [isDraw, setIsDraw] = useState(false); // État pour gérer un match nul
 
   const current = history[stepNumber];
   const { winner, winningSquares } = calculateWinner(current.squares);
@@ -83,15 +84,20 @@ function App() {
       return () => {
         clearTimeout(stopConfettiTimer);
       };
+    } else if (!current.squares.includes(null)) {
+      // Vérifier s'il y a un match nul (toutes les cases sont remplies sans gagnant)
+      setIsDraw(true);
+      setShowOverlay(true);
+      setButtonText('Relancer une nouvelle partie');
     }
-  }, [winner, playerNames]);
+  }, [winner, playerNames, current.squares]);
 
   const handleClick = (index) => {
     const newHistory = history.slice(0, stepNumber + 1);
     const current = newHistory[newHistory.length - 1];
     const squares = current.squares.slice();
 
-    if (squares[index] || winner) return;
+    if (squares[index] || winner || isDraw) return; // Empêcher de jouer si le jeu est terminé
 
     squares[index] = xIsNext ? 'X' : 'O';
     setHistory([...newHistory, { squares }]);
@@ -107,13 +113,6 @@ function App() {
     }
   };
 
-  const undoLastMove = () => {
-    if (stepNumber > 0 && !winner) {
-      setStepNumber(stepNumber - 1);
-      setXIsNext(stepNumber % 2 === 0);
-    }
-  };
-
   const resetGame = () => {
     setHistory([{ squares: Array(9).fill(null) }]);
     setStepNumber(0);
@@ -122,7 +121,8 @@ function App() {
     setShowOverlay(false);
     setWinnerName('');
     setConfettiActive(false);
-    setRecycleConfetti(true);
+    setRecycleConfetti(true); // Réinitialiser l'état des confettis
+    setIsDraw(false); // Réinitialiser l'état de match nul
   };
 
   const handleNameSubmit = (event) => {
@@ -164,11 +164,11 @@ function App() {
             <Board squares={current.squares} onClick={handleClick} winningSquares={winningSquares} />
             {showOverlay && (
               <div className="reset-overlay">
-                Gagnant : {winnerName}
+                {isDraw ? 'Match nul' : `Gagnant : ${winnerName}`}
               </div>
             )}
           </div>
-          {confettiActive && (
+          {confettiActive && !isDraw && (
             <Confetti
               width={window.innerWidth}
               height={window.innerHeight}
@@ -187,7 +187,6 @@ function App() {
                     ? `Gagnant : ${winner === 'X' ? playerNames.player1 : playerNames.player2}`
                     : `Prochain joueur : ${xIsNext ? playerNames.player1 : playerNames.player2}`}
                 </div>
-                <button onClick={undoLastMove} disabled={winner}>Annuler le dernier coup</button>
                 <button onClick={resetGame}>{buttonText}</button>
               </>
             )}
