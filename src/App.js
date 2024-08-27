@@ -74,7 +74,8 @@ function App() {
   };
 
   const undoLastMove = () => {
-    if (stepNumber > 0) {
+    if (stepNumber > 0 && !winner) {
+      // Ne permet d'annuler que si la partie n'est pas terminée
       setStepNumber(stepNumber - 1);
       setXIsNext(stepNumber % 2 === 0);
     }
@@ -93,7 +94,7 @@ function App() {
       </div>
       <div className="game-info">
         <div>{winner ? `Gagnant : ${winner}` : `Prochain joueur : ${xIsNext ? 'X' : 'O'}`}</div>
-        <button onClick={undoLastMove}>Annuler le dernier coup</button>
+        <button onClick={undoLastMove} disabled={winner}>Annuler le dernier coup</button>
         <button onClick={resetGame}>Réinitialiser la partie</button>
       </div>
       <div className="scoreboard">
