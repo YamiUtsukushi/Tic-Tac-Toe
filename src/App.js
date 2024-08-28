@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Confetti from 'react-confetti'; // Importation de la bibliothèque Confetti
+import Confetti from 'react-confetti'; 
 
 function Square({ value, onClick, isWinningSquare }) {
   return (
@@ -63,8 +63,8 @@ function App() {
   const [showOverlay, setShowOverlay] = useState(false);
   const [winnerName, setWinnerName] = useState('');
   const [confettiActive, setConfettiActive] = useState(false);
-  const [recycleConfetti, setRecycleConfetti] = useState(true); // Contrôle du recyclage des confettis
-  const [isDraw, setIsDraw] = useState(false); // État pour gérer un match nul
+  const [recycleConfetti, setRecycleConfetti] = useState(true); 
+  const [isDraw, setIsDraw] = useState(false); 
 
   const current = history[stepNumber];
   const { winner, winningSquares } = calculateWinner(current.squares);
@@ -121,8 +121,8 @@ function App() {
     setShowOverlay(false);
     setWinnerName('');
     setConfettiActive(false);
-    setRecycleConfetti(true); // Réinitialiser l'état des confettis
-    setIsDraw(false); // Réinitialiser l'état de match nul
+    setRecycleConfetti(true); 
+    setIsDraw(false); 
   };
 
   const handleNameSubmit = (event) => {
