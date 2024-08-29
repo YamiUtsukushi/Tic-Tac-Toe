@@ -59,21 +59,47 @@ body {
 .name-form {
   margin-bottom: 3vh;
   text-align: center;
+  width: 80%; 
+  max-width: 600px; 
+  margin: 0 auto; 
+}
+
+.name-form div {
+  margin-bottom: 2vh; 
 }
 
 .name-form label {
   display: block;
   margin-bottom: 1vh;
-  font-size: 2vh;
+  font-size: 2vh; 
+  color: #ffffff;
 }
 
 .name-form input {
+  width: 100%; 
   padding: 1.2vh;
   border-radius: 0.5vh;
   border: 0.1vh solid #ccc;
-  margin-top: 1vh;
-  width: calc(100% - 2.4vh);
+  font-size: 2vh; 
+  box-sizing: border-box; 
 }
+
+.name-form button {
+  padding: 1.5vh 3vh;
+  border: none;
+  border-radius: 0.5vh;
+  background-color: #61dafb;
+  color: #282c34;
+  font-size: 2vh; 
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.name-form button:hover {
+  background-color: #4dabf7;
+  transform: scale(1.05);
+}
+
 
 button {
   padding: 1.2vh 2.4vh;
