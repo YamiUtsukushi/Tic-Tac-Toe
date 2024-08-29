@@ -188,7 +188,7 @@ function App() {
               </button>
             ) : (
               <>
-                <div>
+                <div className="next-player">
                   {winner
                     ? `Gagnant : ${winner === 'X' ? playerNames.player1 : playerNames.player2}`
                     : `Prochain joueur : ${xIsNext ? playerNames.player1 : playerNames.player2}`}
